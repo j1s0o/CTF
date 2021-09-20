@@ -11,4 +11,6 @@
 * [PBjar](pbjar/README.md)
   * [ProgrammersHateProgramming](pbjar/programmershateprogramming.md)
   * [CorL](pbjar/corl.md)
+* [Sunshine](sunshine/README.md)
+  * [Emoji Browser](sunshine/emoji-browser.md)
 
