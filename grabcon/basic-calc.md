@@ -1,3 +1,7 @@
+---
+description: cc
+---
+
 # Basic Calc
 
 ‌
@@ -58,6 +62,5 @@ Tiếp theo ta cat file flagggg.txt
 
 ​![](https://gblobscdn.gitbook.com/assets%2F-Mis_xwrnxbC4COg9dby%2F-MisbF-a-qZfsQOIxeMd%2F-MisgEk0STG32OYnEzsM%2Fimage.png?alt=media&token=50522ce7-5146-4e09-b297-2a76da973e5e)‌
 
-Result: ArrayGrabCON{b4by\_php\_f0r\_y0u}  
-
+Result: ArrayGrabCON{b4by\_php\_f0r\_y0u}
 
