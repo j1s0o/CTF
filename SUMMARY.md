@@ -9,5 +9,6 @@
   * [Table of contents](grabcon/summary.md)
   * [Basic Calc](grabcon/basic-calc.md)
 * [PBjar](pbjar/README.md)
+  * [ProgrammersHateProgramming](pbjar/programmershateprogramming.md)
   * [CorL](pbjar/corl.md)
 
