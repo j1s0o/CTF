@@ -15,4 +15,5 @@
   * [Emoji Browser](sunshine/emoji-browser.md)
 * [ACSC](acsc/README.md)
   * [API](acsc/api.md)
+* [S.H.E.L.L.-CTF](s.h.e.l.l.-ctf.md)
 
