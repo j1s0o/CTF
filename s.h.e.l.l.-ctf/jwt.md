@@ -1,4 +1,4 @@
-# S.H.E.L.L.-CTF
+# Jwt
 
 URL: [http://3.142.122.1:9334/](http://3.142.122.1:9334/)  
 First we see in source code have **AdminNames**
