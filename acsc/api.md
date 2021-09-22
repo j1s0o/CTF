@@ -6,6 +6,8 @@ First we sign up account
 
 ![](../.gitbook/assets/image%20%2822%29.png)
 
+Sign up : user = 3-&gt;15 character & pw = 8-&gt;15 character and other conditions
+
 ![](../.gitbook/assets/image%20%2823%29.png)
 
 ```text
