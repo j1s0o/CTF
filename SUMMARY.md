@@ -14,6 +14,7 @@
 * [Sunshine](sunshine/README.md)
   * [Emoji Browser](sunshine/emoji-browser.md)
 * [ACSC](acsc/README.md)
+  * [Favorite emoji](acsc/favorite-emoji.md)
   * [API](acsc/api.md)
 * [S.H.E.L.L.-CTF](s.h.e.l.l.-ctf/README.md)
   * [Jwt](s.h.e.l.l.-ctf/jwt.md)
