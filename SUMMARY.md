@@ -16,4 +16,7 @@
 * [ACSC](acsc/README.md)
   * [API](acsc/api.md)
 * [S.H.E.L.L.-CTF](s.h.e.l.l.-ctf.md)
+* [Hack The Box](hack-the-box/README.md)
+  * [Emdee five for life](hack-the-box/emdee-five-for-life.md)
+  * [FreeLancer](hack-the-box/freelancer.md)
 
