@@ -19,6 +19,7 @@
 * [S.H.E.L.L.-CTF](s.h.e.l.l.-ctf/README.md)
   * [Jwt](s.h.e.l.l.-ctf/jwt.md)
 * [DownUnderCTF 2021](downunderctf-2021/README.md)
+  * [Chain reaction](downunderctf-2021/chain-reaction.md)
   * [Cowboy World](downunderctf-2021/cowboy-world.md)
   * [Inside Out](downunderctf-2021/inside-out.md)
 
