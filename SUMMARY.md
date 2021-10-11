@@ -23,4 +23,6 @@
   * [Chain reaction](downunderctf-2021/chain-reaction.md)
   * [Cowboy World](downunderctf-2021/cowboy-world.md)
   * [Inside Out](downunderctf-2021/inside-out.md)
-* [Student CTF 2021 (RU)](student-ctf-2021-ru.md)
+* [Student CTF 2021 (RU)](student-ctf-2021-ru/README.md)
+  * [BLT](student-ctf-2021-ru/blt.md)
+  * [Page 1](student-ctf-2021-ru/page-1.md)
