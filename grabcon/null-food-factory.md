@@ -12,7 +12,7 @@ Bài này là **php null byte injection not vulnerable**
 
 ![](<../.gitbook/assets/image (17).png>)
 
-Nó sẽ hiện ra admin password **ic8aGsk^bh **rồi chúng ta đăng nhập tk admin 
+Nó sẽ hiện ra admin password **ic8aGsk^bh** rồi chúng ta đăng nhập tk admin&#x20;
 
 ![](<../.gitbook/assets/image (18).png>)
 
