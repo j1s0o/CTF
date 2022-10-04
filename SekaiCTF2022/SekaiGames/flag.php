@@ -1,0 +1,1 @@
+sekai[game.run=C:10:"Sekai_Game":0:{}
