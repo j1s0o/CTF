@@ -1,6 +1,6 @@
 # Table of contents
 
-* [readme](README.md)
+
 * [GrabCON](grabcon/README.md)
   * [Null Food Factory](grabcon/null-food-factory.md)
   * [Door Lock](grabcon/door-lock.md)
