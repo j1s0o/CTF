@@ -28,4 +28,4 @@
   * [Free Cloud](student-ctf-2021-ru/free-cloud.md)
   * [CatStep](student-ctf-2021-ru/catstep.md)
 * [DaVinciCTF 2022](davincictf-2022.md)
-* [Imaginaryctf 2023](imaginaryct f2023/README.md)
+* [Imaginaryctf 2023](imaginaryct_f2023/README.md)
