@@ -4,11 +4,11 @@
 
 Bài này khi đọc source ta sẽ thấy nó sẽ truy xuất sqlite3 để đăng nhập và gán req.session.username = username
 
-<figure><img src=".gitbook/assets/image (62).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (62).png" alt=""><figcaption></figcaption></figure>
 
 Và nếu như username là admin thì sẽ xem được flag
 
-<figure><img src=".gitbook/assets/image (63).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (63).png" alt=""><figcaption></figcaption></figure>
 
 Đầu tiên ta sẽ xem trong dockerfile và thấy nó không có tiến hành thêm vào database cái gì hết nên ta thấy admin chắc cũng sẽ không có trong đó vậy ta sẽ tìm cách làm sao để bypass với username = admin & password = ...
 
@@ -22,19 +22,19 @@ Payload
 username=admin&password=" UNION SELECT null, null, null FROM sqlite_master -- -
 ```
 
-<figure><img src=".gitbook/assets/image (64).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (64).png" alt=""><figcaption></figcaption></figure>
 
 ## **Idoriot**
 
 Khi ta kiểm tra register thì ta sẽ thấy lúc ta đăng ký nó sẽ có 1 input user\_id được ẩn đi chỉ cần thay user\_id = 1 lúc đăng ký thì nó sẽ thành account của admin thôi
 
-<figure><img src=".gitbook/assets/image (65).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (65).png" alt=""><figcaption></figcaption></figure>
 
 ## roks
 
 Bài này khi đọc code trong file.php thì ta sẽ thấy&#x20;
 
-<figure><img src=".gitbook/assets/image (66).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (66).png" alt=""><figcaption></figcaption></figure>
 
 Nó sẽ tiến hành urldecode param file 1 lần ở $filename và 1 lần nữa ở $filePath mà trong câu điều kiện đầu tiên thì nó sẽ filter các ký tự là / và . để tránh lfi vậy nên ta sẽ sử urlencode 3 lần để lúc nó decode lần đầu thì vẫn chưa có 2 ký tự bị cấm nên chúng ta có thể bypass được điều kiện trên rồi
 
@@ -51,13 +51,13 @@ Payload
 %25252E%25252E%25252F%25252E%25252E%25252F%25252E%25252E%25252F%25252E%25252E%25252Fflag%25252Epng
 ```
 
-<figure><img src=".gitbook/assets/image (67).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (67).png" alt=""><figcaption></figcaption></figure>
 
 ## Perfect Picture
 
 Bài này khá đơn giản chỉ là bypass các điều kiện để có 1 tấm ảnh hoàn hảo thôi
 
-<figure><img src=".gitbook/assets/image (68).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (68).png" alt=""><figcaption></figcaption></figure>
 
 Tại vì nó đã mở sẵn cho mình flag.txt rồi nên khi gửi đúng điều kiện thì nó sẽ return cho mình flag các điều kiện như trên ta sẽ dùng code python để tạo ra 1 tấm ảnh phù hợp
 
@@ -91,53 +91,53 @@ print("Bypass image created and metadata set.")
 
 Upload tấm ảnh đó lên là lấy được flag
 
-<figure><img src=".gitbook/assets/image (69).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (69).png" alt=""><figcaption></figcaption></figure>
 
 ## **idoriot-revenge**
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image.png" alt=""><figcaption></figcaption></figure>
 
 Nếu bạn muốn lấy được flag, bạn cần tìm cách để giá trị của `$user_id` là số nguyên 0 và `$_SESSION['username']` phải khớp với mẫu được tạo từ `$admin['username']`.
 
 Nếu mẫu là một biểu thức chính quy đơn giản như "/^admin$/i", điều kiện `preg_match("/".$admin['username']."/", $_SESSION['username'])` sẽ khớp nếu giá trị của `$_SESSION['username']` là "admin" (không phân biệt chữ hoa chữ thường). Vì vậy, bạn có thể đặt giá trị cho `$_SESSION['username']` là "admin" + "blalblabla" để lấy được flag.
 
-<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Login
 
 Đầu tiên ta chạy thử sqlmap thì thấy username bị dính time based
 
-<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 Vậy dễ rồi ta chỉ cần thêm task table để tìm tên table
 
-<figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 Biết được table rồi ta sẽ tìm tiếp column
 
-<figure><img src=".gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
 Có 2 cột là pwhash và username vậy ta chạy tiếp sqlmap xem trong đó có gì tiếp thôi
 
-<figure><img src=".gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 Ta có được username nhưng password đã bị hash rồi thử tìm thêm thông tin thì ta kiếm được source code như sau
 
-<figure><img src=".gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
 Analyze hash thì ta thấy nó là bcrypt
 
-<figure><img src=".gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
 Thử dùng tool crack thì ta chỉ crack được password của guest thau
 
-<figure><img src=".gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (13).png" alt=""><figcaption></figcaption></figure>
 
 Ở đây ta biết có 1 cách bypass đó là khi hash password bằng php thì nó sẽ sử dụng PASSWORD\_BCRYPT và nó có cách bypass là nếu 2 string có độ dài > 72 ký tự thì khi verify lại luôn đúng
 
@@ -156,7 +156,7 @@ echo "Is Verified: " . ($is_verified ? "true" : "false") . PHP_EOL;
 ?>
 ```
 
-<figure><img src=".gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (12).png" alt=""><figcaption></figcaption></figure>
 
 Ta sẽ sử dụng payload sau để brute force password thôi
 
@@ -169,7 +169,7 @@ ví dụ
 
 Bây giờ viết code cho nó tự hash và request thôi nếu gặp welcome admin thì đó là 1 ký tự đúng
 
-<figure><img src=".gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (14).png" alt=""><figcaption></figcaption></figure>
 
 Ở đây nó GET 1 cái magic gì đó tìm không thấy nên ta thử dùng tk của guest sql vô admin thì ta được
 
@@ -177,7 +177,7 @@ username : `guest' UNION SELECT 'admin', '$2y$10$vw1OC907/WpJagql/LmHV.7zs8I3RE9
 
 password: guest
 
-<figure><img src=".gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
 Magic: 688a35c685a7a654abc80f8e123ad9f0
 
